@@ -8,3 +8,13 @@ class photos {
     required this.id,
   });
 }
+
+class practice {
+  String Category;
+  String Description;
+  practice({
+    required this.Category,
+    required this.Description,
+    List,
+  });
+}

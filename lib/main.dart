@@ -1,4 +1,5 @@
 import 'package:demo/page/home_page.dart';
+import 'package:demo/page/practice2.dart';
 import 'package:demo/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            home: HomePage(),
+            home: practice2(),
           );
         },
       );
