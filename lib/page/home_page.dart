@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange,
-          title: Text(MyApp.title),
+          title: Text("API Practice"),
           actions: [
             ChangeThemeButtonWidget(),
           ],

@@ -37,34 +37,49 @@ class practice2 extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange,
-          title: Text(MyApp.title),
+          title: Text("API Practice"),
           actions: [
             ChangeThemeButtonWidget(),
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: FutureBuilder(
-                  future: getPhotos(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<practice>> snapshot) {
-                    return ListView.builder(
-                        itemCount: practiceList.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title:
-                                Text(snapshot.data![index].Category.toString()),
-                            subtitle: Text(
-                                snapshot.data![index].Description.toString()),
-                          );
-                        });
-                  },
-                ),
-              )
-            ],
+          child: Expanded(
+            child: FutureBuilder(
+              future: getPhotos(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<practice>> snapshot) {
+                return ListView.builder(
+                    itemCount: practiceList.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(snapshot.data![index].Category.toString()),
+                        subtitle:
+                            Text(snapshot.data![index].Description.toString()),
+                      );
+                    });
+                // if (snapshot.hasData) {
+                //   return ListView.builder(
+                //       itemCount: practiceList.length,
+                //       itemBuilder: (context, index) {
+                //         return ListTile(
+                //           title: Text(
+                //               snapshot.data![index].Category.toString()),
+                //           subtitle: Text(
+                //               snapshot.data![index].Description.toString()),
+                //         );
+                //       });
+                // } else {
+                //   return const Center(
+                //       child: SizedBox(
+                //           height: 20,
+                //           width: 20,
+                //           child: CircularProgressIndicator(
+                //             color: Colors.blue,
+                //           )));
+                // }
+              },
+            ),
           ),
         ));
   }
