@@ -3,7 +3,8 @@ import 'package:demo/widget/inherit_widget.dart';
 import 'package:flutter/material.dart';
 
 class resturantpage extends StatefulWidget {
-  const resturantpage({Key? key}) : super(key: key);
+  final finalToken;
+  const resturantpage({Key? key, this.finalToken}) : super(key: key);
 
   @override
   State<resturantpage> createState() => _resturantpageState();

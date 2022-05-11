@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:demo/provider/theme_provider.dart';
 import 'package:demo/resturantPractice/address.dart';
 import 'package:demo/widget/change_theme_button_widget.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -80,6 +83,8 @@ class _loginState extends State<login> {
   }
 
   Future _login() async {
+    final _prefs = SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;
     final MultipartRequest = new http.MultipartRequest(
         "POST", Uri.parse("https://dnpprojects.com/demo/comshop/api/login"));
     MultipartRequest.fields.addAll({
@@ -88,9 +93,16 @@ class _loginState extends State<login> {
     });
     http.StreamedResponse response = await MultipartRequest.send();
     var resposeString = await response.stream.bytesToString();
+
+    final gettoken = prefs.getString('new');
+    print(gettoken);
     if (response.statusCode == 200) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) => address()));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => address(
+                    finalToken: gettoken,
+                  )));
     } else {
       return CircularProgressIndicator();
     }

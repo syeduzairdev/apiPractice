@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class address extends StatefulWidget {
-  const address({Key? key}) : super(key: key);
+  final finalToken;
+
+  const address({Key? key, this.finalToken}) : super(key: key);
 
   @override
   State<address> createState() => _addressState();
@@ -37,6 +39,7 @@ class _addressState extends State<address> {
               ),
               InkWell(
                 onTap: () {
+                  print(widget.finalToken);
                   locationservices_provider.currentlocation(context);
                 },
                 child: Container(
