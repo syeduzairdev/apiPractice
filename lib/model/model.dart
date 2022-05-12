@@ -10,9 +10,19 @@ class photos {
 }
 
 class practice {
+  String name;
+  int phone;
+  practice({
+    required this.name,
+    required this.phone,
+    List,
+  });
+}
+
+class resturant {
   String Category;
   String Description;
-  practice({
+  resturant({
     required this.Category,
     required this.Description,
     List,

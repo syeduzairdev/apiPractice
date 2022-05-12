@@ -40,7 +40,9 @@ class _addressState extends State<address> {
               InkWell(
                 onTap: () {
                   print(widget.finalToken);
-                  locationservices_provider.currentlocation(context);
+
+                  locationservices_provider.currentlocation(
+                      context, widget.finalToken);
                 },
                 child: Container(
                     color: Colors.red,

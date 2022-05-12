@@ -55,7 +55,7 @@ class cartprovider with ChangeNotifier {
 
   String Address = 'search';
   String locate = '';
-  Future currentlocation(BuildContext context) async {
+  Future currentlocation(BuildContext context, finalToken) async {
     Position position = await _getGeoLocationPosition();
     final _prefs = SharedPreferences.getInstance();
     final SharedPreferences prefs = await _prefs;
@@ -81,11 +81,22 @@ class cartprovider with ChangeNotifier {
       print("latitude :  $latitude");
       print("longitude :  $longitude");
       print("aaaaaaaaaaaaaadddd :  $latlong");
+      final _prefs = SharedPreferences.getInstance();
+      final SharedPreferences prefs = await _prefs;
+      final gettoken = prefs.getString('new');
+      final longtitude = prefs.getDouble('longtitude');
+      final latitudee = prefs.getDouble('latitude');
+      print(longtitude);
+      print(latitudee);
       return Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => InheritedDataProvider(
-                  child: resturantpage(),
+                  child: resturantpage(
+                    latitude: latitudee,
+                    longtitude: longtitude,
+                    finalToken: finalToken,
+                  ),
                   data: Address,
                 )),
       );

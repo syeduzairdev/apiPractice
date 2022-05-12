@@ -14,12 +14,14 @@ class practice2 extends StatelessWidget {
     final response =
         await http.get(Uri.parse('https://api.publicapis.org/entries'));
     var data = jsonDecode(response.body.toString());
-    var z = data["entries"];
-    //  print(z);
+    print(data);
+    var z = data["data"];
+
+    print(z);
     if (response.statusCode == 200) {
       for (Map i in z) {
         practice Practice =
-            practice(Category: i['Category'], Description: i['Description']);
+            practice(name: i['Category'], phone: i['Description']);
         practiceList.add(Practice);
       }
       return practiceList;
@@ -53,31 +55,10 @@ class practice2 extends StatelessWidget {
                     itemCount: practiceList.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(snapshot.data![index].Category.toString()),
-                        subtitle:
-                            Text(snapshot.data![index].Description.toString()),
+                        title: Text(snapshot.data![index].name.toString()),
+                        subtitle: Text(snapshot.data![index].phone.toString()),
                       );
                     });
-                // if (snapshot.hasData) {
-                //   return ListView.builder(
-                //       itemCount: practiceList.length,
-                //       itemBuilder: (context, index) {
-                //         return ListTile(
-                //           title: Text(
-                //               snapshot.data![index].Category.toString()),
-                //           subtitle: Text(
-                //               snapshot.data![index].Description.toString()),
-                //         );
-                //       });
-                // } else {
-                //   return const Center(
-                //       child: SizedBox(
-                //           height: 20,
-                //           width: 20,
-                //           child: CircularProgressIndicator(
-                //             color: Colors.blue,
-                //           )));
-                // }
               },
             ),
           ),

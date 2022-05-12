@@ -5,6 +5,7 @@ class InheritedDataProvider extends InheritedWidget {
   InheritedDataProvider({
     required Widget child,
     required this.data,
+    finalToken,
   }) : super(child: child);
   @override
   bool updateShouldNotify(InheritedDataProvider oldWidget) =>
